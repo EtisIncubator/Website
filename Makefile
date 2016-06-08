@@ -12,5 +12,11 @@ install: all
 	@cp -r assets/js/out install
 ball: install
 	@echo Creating tarball
+clean:
+	@echo cleaning
+	@rm -rf app/app
+	@rm -rf assets/compiled
+	@rm -rf assets/js/out
+	@rm -rf install
 
 .PHONY: ball app assets
