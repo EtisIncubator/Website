@@ -1,4 +1,4 @@
-all: pre css js
+all: pre css js static
 
 pre:
 	@mkdir -p compiled
@@ -6,6 +6,9 @@ pre:
 css:
 	@echo none
 js:
-	@echo none
+	@cd js && lein cljsbuild once
+static:
+	@echo copy static files
+	@cp -r img/* compiled/
 
-.PHONY: pre css js
+.PHONY: pre css js static
