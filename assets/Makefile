@@ -1,14 +1,15 @@
-all: pre css js static
+all: pre css compiled/bundle.js static
 
 pre:
 	@mkdir -p compiled
 
-css:
-	@echo none
-js:
-	@cd js && lein cljsbuild once
+compiled/bundle.js:
+	gulp
+compiled/bundle.css:
+	gulp css
 static:
 	@echo copy static files
 	@cp -r img/* compiled/
 
-.PHONY: pre css js static
+
+.PHONY: pre css static compiled/bundle.js

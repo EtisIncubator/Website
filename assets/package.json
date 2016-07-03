@@ -1,0 +1,30 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015-riot": "^1.1.0",
+    "babelify": "^7.3.0",
+    "bluebird": "^3.4.1",
+    "browserify": "^13.0.1",
+    "glob": "^7.0.5",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-closure-compiler": "^0.4.0",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-myth": "^1.1.0",
+    "gulp-watch": "^4.3.8",
+    "jade": "^1.11.0",
+    "riotify": "^1.0.1",
+    "uglifyify": "^3.0.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  }
+}

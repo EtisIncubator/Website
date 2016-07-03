@@ -8,15 +8,12 @@ install: all
 	@mkdir -p install
 	@cp -r assets/compiled install/public
 	@cp -r app/app install
-	@cp -r template install/
-	@cp -r assets/js/out install
+	@cp -r assets/templates install/
 ball: install
 	@echo Creating tarball
 clean:
 	@echo cleaning
 	@rm -rf app/app
-	@rm -rf assets/compiled
-	@rm -rf assets/js/out
 	@rm -rf install
 
 .PHONY: ball app assets

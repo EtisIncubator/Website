@@ -1,4 +1,4 @@
-app/app
+app/app*
 pom.xml
 pom.xml.asc
 *jar
@@ -6,12 +6,7 @@ pom.xml.asc
 /classes/
 /target/
 /checkouts/
-.lein-deps-sum
-.lein-repl-history
-.lein-plugins/
-.lein-failures
-.nrepl-port
 *.tar
 install/
 assets/compiled
-assets/js/out
+assets/node_modules

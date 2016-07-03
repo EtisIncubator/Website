@@ -3,45 +3,56 @@ package main
 import (
 	"github.com/TileHalo/logger"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/kataras/iris"
-	"log"
-	"os"
 )
 
-type Server struct {
-	db *gorm.DB
-}
+type Server struct{}
 
-//Everything else will be used by the api
 func (s Server) Serve(ctx *iris.Context) {
-	if err := ctx.Render("main.jade", nil); err != nil {
-		println(err.Error())
-	}
-
+	ctx.HTML(200, PAGE)
+}
+func Models(db *gorm.DB) {
+	db.AutoMigrate(&User{}, &Person{}, &Project{})
 }
 
 func main() {
 	server := Server{}
-	if os.Getenv("IRIS") == "Production" {
-		user := os.Getenv("USER")
-		data := "host=localhost user=" + user + "dbname=" + user
-		data += "sslmode=disable" + "password=" + os.Getenv("PASS")
-		if db, err := gorm.Open("postgres", data); err == nil {
-			server.db = db
-		} else {
-			log.Fatal(err)
-		}
-	} else {
-		iris.Static("/public", "./assets/compiled", 1)
-		iris.Static("/out", "./assets/js/out", 1)
-	}
 	iris.Use(logger.Default("Hautomo"))
-	iris.Config().Render.Template.Extensions = []string{".jade"}
-	iris.Config().Render.Template.Engine = iris.JadeEngine
-	iris.Config().Render.Template.Directory = "./assets/templates"
+	db := Env()
+	Models(db)
+	api := Api{DB: db, Session: map[string]Session{},
+		Verify: map[string]User{}}
 	iris.Handle("GET", "/", server)
-	reactApi := iris.Party("/api")
-	reactApi.Handle("GET", "/", server)
+	iris.Handle("GET", "/database", server)
+	iris.Handle("GET", "/register", server)
+	iris.Handle("GET", "/login", server)
+	iris.Handle("GET", "/logout", server)
+	iris.Get("/verify/:token", api.VerifyApi)
+	auths := iris.Party("/auth")
+	{
+		auths.Handle("GET", "/persons", server)
+	}
+
+	restApi := iris.Party("/api")
+	{
+		restApi.Post("/lang", api.SetLang)
+		restApi.Get("/text/:component", api.GetText)
+		restApi.Post("/login", api.Login)
+		restApi.Post("/logout", api.SignOut)
+		restApi.Post("/register", api.UserCreate)
+		person := restApi.Party("/person")
+		{
+			person.Post("/", api.PersonCreate)
+		}
+		auth := restApi.Party("/auth")
+		{
+			auth.UseFunc(api.Auth)
+			authperson := auth.Party("/person")
+			{
+				authperson.Get("/", api.PersonGet)
+			}
+		}
+	}
+
 	iris.Listen(":8080")
 }
