@@ -8,6 +8,7 @@ var source = require('vinyl-source-stream')
 var cleanCSS = require('gulp-clean-css')
 var myth = require('gulp-myth')
 var concatCss = require('gulp-concat-css')
+var sass = require('gulp-sass')
 
 gulp.task('default', function () {
 		var b = browserify()
@@ -22,7 +23,8 @@ gulp.task('default', function () {
 		return b
 });
 gulp.task('css', function () {
-  return gulp.src('css/*.css')
+  return gulp.src('css/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
         .pipe(concatCss("bundle.css"))
         .pipe(myth())
         .pipe(cleanCSS({compatibility: 'ie8'}))

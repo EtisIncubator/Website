@@ -6,20 +6,10 @@ const PAGE = `<!DOCTYPE html>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width'>
     <title>Hautomo</title>
-    <script
-			  src='https://code.jquery.com/jquery-2.2.4.min.js'
-			  integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='
-			  crossorigin='anonymous'></script>
     <script src='https://apis.google.com/js/platform.js' async defer></script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/barba.js/0.0.9/barba.min.js' type='text/javascript'></script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/Vidage/0.1.2/scripts/Vidage.min.js' type='text/javascript' charset='utf-8'></script>
     <meta name='google-signin-client_id' content='474184861991-jnjhhsuvsj76a1sbtb5984oveigo1ra8.apps.googleusercontent.com'>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
-    integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' document.
-    integrity='sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS' crossorigin='anonymous'></script>
 	<link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet'>
-	</script><script src="https://cdn.jsdelivr.net/riot/3.0.0-alpha.4/riot+compiler.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/riot/3.0.0-alpha.4/riot+compiler.min.js"></script>
 	<link rel="stylesheet" href="/public/bundle.css">
 	<link rel="apple-touch-icon" sizes="57x57" href="/public/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/public/apple-icon-60x60.png">
